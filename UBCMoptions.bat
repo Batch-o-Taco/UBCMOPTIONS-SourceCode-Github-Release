@@ -21,7 +21,7 @@ defrag.exe C: /U /V
 echo System drive defragmentation completed.
 pause
 cls
-goto menu
+goto :menu
 
 :option9
 cls
@@ -29,7 +29,7 @@ echo Scanning for malware...
 powershell.exe -Command "Start-MpScan -ScanType QuickScan"
 echo Malware scan completed.
 pause
-goto menu
+goto :menu
 
 :option7
 REM Get user input for setup file and arguments
@@ -56,4 +56,4 @@ REM Add any code you want to execute after an option has been selected
 echo Returning to menu...
 pause
 cls
-goto :start
+goto menu2
