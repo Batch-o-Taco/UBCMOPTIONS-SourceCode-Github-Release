@@ -12,14 +12,17 @@ if errorlevel 5 goto option5
 if errorlevel 4 goto menu2
 if errorlevel 3 goto option7
 if errorlevel 2 goto option9
-if errorlevel 1 goto option10 :option10
+if errorlevel 1 goto option10
+
+:option10
 cls
 echo Defragmenting system drive...
 defrag.exe C: /U /V
 echo System drive defragmentation completed.
 pause
 cls
-goto menu 
+goto menu
+
 :option9
 cls
 echo Scanning for malware...
@@ -27,6 +30,7 @@ powershell.exe -Command "Start-MpScan -ScanType QuickScan"
 echo Malware scan completed.
 pause
 goto menu
+
 :option7
 REM Get user input for setup file and arguments
 set /p setup=Enter path to setup file:
@@ -38,9 +42,18 @@ echo Invalid setup file. Please try again.
 goto :install_setup
 ) else (
 echo Installing setup file...
-start /wait "" "%setup%" %arguments%
+start /wait "" %setup% %arguments%
 echo Setup file installed successfully.
 ) 
+
 :menu2 
-cd.. start %version2%.bat 
-exit
+cd.. 
+start %version2%.bat 
+goto :eof
+
+:menu
+REM Add any code you want to execute after an option has been selected
+echo Returning to menu...
+pause
+cls
+goto :start
