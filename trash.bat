@@ -1,4 +1,4 @@
 @echo off
 cd..
-rd /s /q "folder_name"
+rd /s /q "UBCMOPTIONS-SourceCode-Github-Release"
 del "%~f0"
